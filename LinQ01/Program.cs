@@ -1,5 +1,6 @@
 ﻿using LINQ.DataSources;
 using LINQ.Models;
+using System.Net.Security;
 namespace LinQ01
 {
     internal class Program
@@ -46,14 +47,28 @@ namespace LinQ01
             #endregion
 
             #region Q5
-            var Products = Source.ProductList
-                            .Where(S => S.Category == "Condiments" && S.UnitPrice > 0)
-                            .Select(S => S.ProductName);
-            foreach (var item in Products)
+            //var Products = Source.ProductList
+            //                .Where(S => S.Category == "Condiments" && S.UnitPrice > 0)
+            //                .Select(S => S.ProductName);
+            //foreach (var item in Products)
+            //{
+            //    Console.WriteLine($"{item}");
+            //}
+            #endregion
+
+            #region Q6
+            var newanon = Source.ProductList
+                .Select (S=>new
+                {
+                S.ProductName ,
+                S.UnitPrice ,
+                StocksTatus = S.UnitsInStock > 0 ? "Available"    : "Out OF Stock "});
+
+            foreach (var item in newanon)
             {
                 Console.WriteLine($"{item}");
             }
-            #endregion
+            #endregion 
         }
     }
 }
