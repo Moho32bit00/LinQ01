@@ -1,4 +1,5 @@
 ﻿using LINQ.DataSources;
+using LINQ.Models;
 namespace LinQ01
 {
     internal class Program
@@ -25,12 +26,22 @@ namespace LinQ01
             #endregion
 
             #region Q3
-            var products = Source.ProductList
-                .OrderBy(S => S.UnitPrice)
-                .Select(S => (S.ProductName, S.UnitPrice));
-            foreach (var item in products)
+            //var products = Source.ProductList
+            //    .OrderBy(S => S.UnitPrice)
+            //    .Select(S => (S.ProductName, S.UnitPrice));
+            //foreach (var item in products)
+            //{
+            //    Console.WriteLine($"{item.ProductName}: {item.UnitPrice}");
+            //}
+            #endregion
+
+            #region Q4
+            var Product = Source.ProductList
+                .Where(S => S.UnitPrice > 10 && S.UnitPrice < 30)
+                .Select(S => S.ProductName);
+            foreach (var item in Product)
             {
-                Console.WriteLine($"{item.ProductName}: {item.UnitPrice}");
+                Console.WriteLine($"{item}");
             }
             #endregion
         }
