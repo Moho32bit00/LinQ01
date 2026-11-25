@@ -57,16 +57,30 @@ namespace LinQ01
             #endregion
 
             #region Q6
-            var newanon = Source.ProductList
-                .Select (S=>new
-                {
-                S.ProductName ,
-                S.UnitPrice ,
-                StocksTatus = S.UnitsInStock > 0 ? "Available"    : "Out OF Stock "});
+            //var newanon = Source.ProductList
+            //    .Select (S=>new
+            //    {
+            //    S.ProductName ,
+            //    S.UnitPrice ,
+            //    StocksTatus = S.UnitsInStock > 0 ? "Available"    : "Out OF Stock "});
 
-            foreach (var item in newanon)
+            //foreach (var item in newanon)
+            //{
+            //    Console.WriteLine($"{item}");
+            //}
+            #endregion
+
+            #region Q7 
+            var ProductsWPosition =Source.ProductList 
+                 .Select ((product, index) => new
+                    {
+                    Index = index,
+                    Name = product.ProductName
+                    });
+
+            foreach (var item in ProductsWPosition)
             {
-                Console.WriteLine($"{item}");
+                Console.WriteLine($"{item.Index}){item.Name}");
             }
             #endregion 
         }
