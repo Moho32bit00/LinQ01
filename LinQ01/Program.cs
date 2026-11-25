@@ -16,11 +16,21 @@ namespace LinQ01
             #endregion
 
             #region Q2
-            var ProductNamess = Source.ProductList
-                                .Select(S => (S.ProductName));
-            foreach (var item in ProductNamess)
+            //var ProductNamess = Source.ProductList
+            //                    .Select(S => (S.ProductName));
+            //foreach (var item in ProductNamess)
+            //{
+            //    Console.WriteLine($"{item}");
+            //}
+            #endregion
+
+            #region Q3
+            var products = Source.ProductList
+                .OrderBy(S => S.UnitPrice)
+                .Select(S => (S.ProductName, S.UnitPrice));
+            foreach (var item in products)
             {
-                Console.WriteLine($"{item}");
+                Console.WriteLine($"{item.ProductName}: {item.UnitPrice}");
             }
             #endregion
         }
