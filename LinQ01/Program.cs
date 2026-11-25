@@ -36,10 +36,20 @@ namespace LinQ01
             #endregion
 
             #region Q4
-            var Product = Source.ProductList
-                .Where(S => S.UnitPrice > 10 && S.UnitPrice < 30)
-                .Select(S => S.ProductName);
-            foreach (var item in Product)
+            //var Product = Source.ProductList
+            //    .Where(S => S.UnitPrice > 10 && S.UnitPrice < 30)
+            //    .Select(S => S.ProductName);
+            //foreach (var item in Product)
+            //{
+            //    Console.WriteLine($"{item}");
+            //}
+            #endregion
+
+            #region Q5
+            var Products = Source.ProductList
+                            .Where(S => S.Category == "Condiments" && S.UnitPrice > 0)
+                            .Select(S => S.ProductName);
+            foreach (var item in Products)
             {
                 Console.WriteLine($"{item}");
             }
